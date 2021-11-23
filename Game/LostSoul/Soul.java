@@ -12,21 +12,27 @@ public class Soul extends Actor
     private boolean noTouch = false;
     private int speed = 2;
     private String item1 = "Empty";
-    private int GhostSpearTimer = 50;
-    private int GhostSpearSpam = 0;
+    private int ghostSpearTimer = 50;
+    private int ghostSpearSpam = 0;
     private boolean holder = true;
+    private int expNum = 0;
+    public static int killCount = 0;
+    private int killCountHold = 0;
 
     /**
      * Act - do whatever the Soul wants to do. This method is called whenever the 'Act' or 'Run' button gets pressed in the environment.
      */
     public void act()
     {
+        getWorld().showText(null , getX(), getY() - 40);
         moveAndTurn();
         damage();
-        getWorld().showText("Hp: " + health, 300, 100);
-        SpeedyGhost();
-        GhostSpear();
+        speedyGhost();
+        ghostSpear();
         nextLevel();
+        death();
+        experience();
+        getWorld().showText("Hp: " + health, getX(), getY() - 40);
     }
 
     /**
@@ -81,7 +87,7 @@ public class Soul extends Actor
     /**
      * 
      */
-    public void SpeedyGhost()
+    public void speedyGhost()
     {
         Actor SpeedyGhost = getOneIntersectingObject(SpeedyGhost.class);
         if (SpeedyGhost != null) {
@@ -109,21 +115,21 @@ public class Soul extends Actor
     /**
      * 
      */
-    public void GhostSpear()
+    public void ghostSpear()
     {
-        List GhostSpearInWorld = getWorld().getObjects(GhostSpear.class);
+        List ghostSpearInWorld = getWorld().getObjects(GhostSpear.class);
         if (Greenfoot.isKeyDown("space")) {
-            if (GhostSpearInWorld.size() == 0) {
+            if (ghostSpearInWorld.size() == 0) {
                 getWorld().addObject( new GhostSpear(), getX() + 25, getY());
             }
             holder = false;
         }
-        if (GhostSpearTimer > 0) {
-            GhostSpearTimer = GhostSpearTimer - 1;
+        if (ghostSpearTimer > 0) {
+            ghostSpearTimer = ghostSpearTimer - 1;
         }
-        if (GhostSpearTimer == 0) {
+        if (ghostSpearTimer == 0) {
             getWorld().removeObjects(getWorld().getObjects(GhostSpear.class));
-            GhostSpearTimer = 50;
+            ghostSpearTimer = 50;
             holder = true;
         }
     }
@@ -138,6 +144,28 @@ public class Soul extends Actor
                 room2.addObject(this, 10, 200);
                 Greenfoot.setWorld(room2);
             }
+        }
+    }
+    
+    public void death()
+    {
+        if (health == 0)
+        {
+            Greenfoot.setWorld(new EndGame());
+        }
+    }
+    
+    public static int killCounter()
+    {
+        return killCount;
+    }
+    
+    public void experience()
+    {
+        if(killCount > killCountHold)
+        {
+            expNum += 10;
+            killCountHold++;
         }
     }
 }

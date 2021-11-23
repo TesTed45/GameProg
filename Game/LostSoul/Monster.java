@@ -20,7 +20,7 @@ public class Monster extends Actor
             followPlayer();
         }
     }
-    //BROKEN NEED FIX
+    
     private void followPlayer()
     {
         Actor actor = (Actor)getWorld().getObjects(Soul.class).get(0);
@@ -62,6 +62,7 @@ public class Monster extends Actor
         }
         if (monsterHealth == 0) {
             getWorld().removeObject(this);
+            Soul.killCount += 1;
         }
     }
 }
