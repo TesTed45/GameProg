@@ -32,11 +32,13 @@ public class NewRoom extends World
         Health health3 =  new Health();
         addObject(health3, 171, 44);
         Monster monster =  new Monster();
-        addObject(monster, 548, 358);
+        addObject(monster, Greenfoot.getRandomNumber(800), Greenfoot.getRandomNumber(400));
+        Monster monster2 =  new Monster();
+        addObject(monster2, Greenfoot.getRandomNumber(800), Greenfoot.getRandomNumber(400));
         SpeedyGhost speedyGhost =  new SpeedyGhost();
-        addObject(speedyGhost, 260, 395);
+        addObject(speedyGhost, Greenfoot.getRandomNumber(800), Greenfoot.getRandomNumber(800));
         VamCape vamCape =  new VamCape();
-        addObject(vamCape, 364, 218);
+        addObject(vamCape, Greenfoot.getRandomNumber(800), Greenfoot.getRandomNumber(800));
         soul.setLocation(383,760);
         removeObject(health3);
         removeObject(health2);

@@ -14,11 +14,13 @@ public class Monster extends Actor
 
     public void act()
     {
-        getWorld().showText("Hp: " + monsterHealth, 500, 100);
+        getWorld().showText(null , getX(), getY() - 40);
         takeDamage();
+        if (this.getWorld() == null) return;
         if (this.getWorld() != null) {
             followPlayer();
         }
+        getWorld().showText("Hp: " + monsterHealth, getX(), getY() - 40);
     }
     
     private void followPlayer()
