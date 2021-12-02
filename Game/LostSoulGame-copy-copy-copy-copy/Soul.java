@@ -9,21 +9,20 @@ public class Soul extends Actor
     private int damageTimer = 100;
     private boolean noTouch = false;
 
-    private int damageByMonsters;
+    private int damageByMonsters = 5;
 
     private String weapon = "SoulSpear";
     private int weaponTimer = 30;
     private boolean weaponHolder = true;
 
     private String statsBooster = "";
-    private int health = 30;
-    private int totalHealth;
-    private int currentHealth;
+    private int totalHealth = 30;
     private int levelUpHealth;
     private int bonusHealth;
     private int speed;
-    private int bonusDamage;
+    private int bonusDamage = 0;
     private int bonusDefense;
+
     private int worldChecker = 1;
     private int expNum = 0;
     public static int killCount = 0;
@@ -40,9 +39,11 @@ public class Soul extends Actor
         moveAndTurn();
         damage();
         getWorld().showText("Hp: " + totalHealth, 300, 100);
-        getWorld().showText("Speed: " + speed, 500, 100);
+        getWorld().showText("Speed: " + speed, 100, 200);
         getWorld().showText("Protection: " + bonusDefense, 700, 100);
         getWorld().showText("Damage: " + bonusDamage, 100, 100);
+        getWorld().showText("Stat: " + statsBooster, 400, 200);
+        getWorld().showText("Bonus HP: " + bonusHealth, 600, 200);
 
         weapons();
         useWeapons();
@@ -90,7 +91,7 @@ public class Soul extends Actor
     {
         if (noTouch == false) {
             if (isTouching(Monster.class)) {
-                totalHealth = (totalHealth + bonusDefense) - damageByMonsters;
+                totalHealth = totalHealth + bonusHealth - damageByMonsters;
                 noTouch = true;
             }
         }
@@ -120,12 +121,12 @@ public class Soul extends Actor
             getWorld().removeObjects(getWorld().getObjects(SpeedySoul.class));
         }
         if (soulTanky != null) {
-            getWorld().removeObjects(getWorld().getObjects(TankySoul.class));
             statsBooster = "TankySoul";
+            getWorld().removeObjects(getWorld().getObjects(TankySoul.class));
         }
         if (soulOP != null) {
-            getWorld().removeObjects(getWorld().getObjects(OPSoul.class));
             statsBooster = "OPSoul";
+            getWorld().removeObjects(getWorld().getObjects(OPSoul.class));
         }
     }
 
@@ -133,18 +134,18 @@ public class Soul extends Actor
     {
         if (statsBooster == "ToughSoul") {
             bonusDamage = 4;
-        } else if (statsBooster != "OPSoul"){
+        } else if (statsBooster != "ToughSoul" && statsBooster != "OPSoul") {
             bonusDamage = 0;
         }
         if (statsBooster == "SpeedySoul") {
             speed = 4;
-        } else if (statsBooster != "OPSoul"){
+        } else if (statsBooster != "SpeedySoul" && statsBooster != "OPSoul"){
             speed = 2;
         }
         if (statsBooster == "TankySoul") {
             bonusHealth = 12;
             bonusDefense = 2;
-        } else if (statsBooster != "OPSoul"){
+        } else if (statsBooster != "TankySoul" && statsBooster != "OPSoul") {
             bonusHealth = 0;
             bonusDefense = 0;
         }
@@ -153,7 +154,7 @@ public class Soul extends Actor
             bonusDamage = 2;
             speed = 3;
             bonusDefense = 1;
-        } else if (statsBooster != "ToughSoul" && statsBooster != "SpeedySoul" && statsBooster != "TankySoul"){
+        } else if (statsBooster != "ToughSoul" && statsBooster != "SpeedySoul" && statsBooster != "TankySoul" && statsBooster != "OPSoul") {
             bonusHealth = 0;
             bonusDamage = 0;
             speed = 2;
@@ -364,7 +365,7 @@ public class Soul extends Actor
             killCountHold++;
         }
     }
-    
+
     public void levelUp()
     {
         if(expNum == 100)
