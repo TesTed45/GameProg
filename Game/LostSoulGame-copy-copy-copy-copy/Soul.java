@@ -23,13 +23,13 @@ public class Soul extends Actor
     private int bonusDamage = 0;
     private int bonusDefense;
 
+    private String holyItem = "";
+
     private int worldChecker = 1;
     private int expNum = 0;
     public static int killCount = 0;
     private int killCountHold = 0;
     private int level = 0;
-
-    private String holyItem = "";
 
     /**
      * Act - do whatever the Soul wants to do. This method is called whenever the 'Act' or 'Run' button gets pressed in the environment.
@@ -38,9 +38,10 @@ public class Soul extends Actor
     {
         moveAndTurn();
         damage();
+        heal();
         getWorld().showText("Hp: " + totalHealth, 300, 100);
         getWorld().showText("Speed: " + speed, 100, 200);
-        getWorld().showText("Protection: " + bonusDefense, 700, 100);
+        getWorld().showText("Damage Timer " + damageTimer, 700, 100);
         getWorld().showText("Damage: " + bonusDamage, 100, 100);
         getWorld().showText("Stat: " + statsBooster, 400, 200);
         getWorld().showText("Bonus HP: " + bonusHealth, 600, 200);
@@ -51,7 +52,11 @@ public class Soul extends Actor
         statBoosters();
         useStatBoosters();
 
+        holyItems();
+        useHolyItems();
+
         nextLevel();
+        getHolyItem();
 
         experience();
         levelUp();
@@ -90,8 +95,28 @@ public class Soul extends Actor
     public void damage()
     {
         if (noTouch == false) {
-            if (isTouching(Monster.class)) {
-                totalHealth = totalHealth + bonusHealth - damageByMonsters;
+            if (isTouching(WeakDemon.class)) {
+                totalHealth = totalHealth - 5;
+                noTouch = true;
+            }
+            if (isTouching(LesserDemon.class)) {
+                totalHealth = totalHealth - 10;
+                noTouch = true;
+            }
+            if (isTouching(SmallHellhound.class)) {
+                totalHealth = totalHealth - 6;
+                noTouch = true;
+            }
+            if (isTouching(Hellhound.class)) {
+                totalHealth = totalHealth - 15;
+                noTouch = true;
+            }
+            if (isTouching(SadSoul.class)) {
+                totalHealth = totalHealth - 10;
+                noTouch = true;
+            }
+            if (isTouching(WeepingSoul.class)) {
+                totalHealth = totalHealth - 16;
                 noTouch = true;
             }
         }
@@ -101,8 +126,24 @@ public class Soul extends Actor
             }
             if (damageTimer == 0) {
                 noTouch = false;
-                damageTimer = 100;
+                if (holyItem == "AngelFeather") {
+                    damageTimer = 200;
+                } else if (holyItem == "Salt" || holyItem == "VampiricCape" || holyItem == "SatanicPendant" || holyItem == "") {
+                    damageTimer = 100;
+                }
             }
+        }
+    }
+
+    public int getDamageTimer() {
+        return damageTimer;
+    }
+
+    public void heal() {
+        Actor soulHealth = getOneIntersectingObject(Health.class);
+        if (soulHealth != null) {
+            totalHealth = totalHealth + 5;
+            getWorld().removeObjects(getWorld().getObjects(Health.class));
         }
     }
 
@@ -162,20 +203,42 @@ public class Soul extends Actor
         }
     }
 
-    /**
-     * HOLY ITEMS - Vampiric Cape
-     */
-    /*public void VamCape()
+    public void holyItems()
     {
-    Actor VamCape = getOneIntersectingObject(VamCape.class);
-    if (VamCape != null) {
-    World world = getWorld();
-    world.removeObject(VamCape);
-    holyItem = "VamCape";
+        Actor soulFeather = getOneIntersectingObject(AngelFeather.class);
+        Actor soulSalt = getOneIntersectingObject(Salt.class);
+        Actor soulVampire = getOneIntersectingObject(VampiricCape.class);
+        Actor soulPendant = getOneIntersectingObject(SatanicPendant.class);
+        if (soulFeather != null) {
+            holyItem = "AngelFeather";
+            getWorld().removeObjects(getWorld().getObjects(AngelFeather.class));
+        }
+        if (soulSalt != null) {
+            holyItem = "Salt";
+            getWorld().removeObjects(getWorld().getObjects(Salt.class));
+        }
+        if (soulVampire != null) {
+            holyItem = "VampiricCape";
+            getWorld().removeObjects(getWorld().getObjects(VampiricCape.class));
+        }
+        if (soulPendant != null) {
+            holyItem = "SatanicPendant";
+            getWorld().removeObjects(getWorld().getObjects(SatanicPendant.class));
+        }
     }
-    while (holyItem == "VamCape") {
+
+    public void useHolyItems()
+    {
+        if (holyItem == "VampiricCape") {
+
+        } else if (holyItem == "AngelFeather" || holyItem == "Salt" || holyItem == "SatanicPendant") {
+
+        }
     }
-    }*/
+
+    public String getHolyItem() {
+        return holyItem;
+    }
 
     /**
      * Next Rooms

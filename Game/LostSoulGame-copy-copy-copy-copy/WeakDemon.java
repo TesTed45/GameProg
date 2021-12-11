@@ -1,11 +1,12 @@
-import lang.stride.*;
-import java.util.*;
-import greenfoot.*;
+import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
+ * Write a description of class WeakDemon here.
  * 
+ * @author (your name) 
+ * @version (a version number or a date)
  */
-public class Monster extends Monsters
+public class WeakDemon extends Monsters
 {
     private int monsterHealth = 50;
     private int damageTimer = 25;
@@ -15,10 +16,14 @@ public class Monster extends Monsters
     private int followTimer = 150;
     private boolean noFollow = false;
     private boolean movingVertically = Greenfoot.getRandomNumber(2) == 0;
-
+    
+    /**
+     * Act - do whatever the Hellhounds wants to do. This method is called whenever
+     * the 'Act' or 'Run' button gets pressed in the environment.
+     */
     public void act()
     {
-        /*getWorld().showText("Hp: " + monsterHealth, 500, 100);
+        getWorld().showText("Hp: " + monsterHealth, 500, 100);
         takeDamage();
         if (this.getWorld() != null) {
             if (getWorld().getObjects(Soul.class).get(0).getHolyItem().equals("SatanicPendant")) {
@@ -33,9 +38,9 @@ public class Monster extends Monsters
             } else {
                 followPlayer();
             }
-        }*/
+        }
     }
-    //BROKEN NEED FIX
+    
     private void followPlayer()
     {
         Actor actor = (Actor)getWorld().getObjects(Soul.class).get(0);
@@ -53,11 +58,11 @@ public class Monster extends Monsters
         if (actor.getY() < coordY - 50) {
             setLocation(getX(), getY() - Greenfoot.getRandomNumber(2));
         }
-
     }
-
+    
     public void takeDamage()
     {
+        Health health = new Health();
         if (getWorld().getObjects(Soul.class).get(0).getHolyItem().equals("Salt")) {
             if (saltTouch == false) {
                 if (isTouching(Soul.class)) {
@@ -113,6 +118,7 @@ public class Monster extends Monsters
             }
         }
         if (monsterHealth == 0) {
+            getWorld().addObject(health, getX(), getY());
             getWorld().removeObject(this);
             Soul.killCount += 1;
         }
