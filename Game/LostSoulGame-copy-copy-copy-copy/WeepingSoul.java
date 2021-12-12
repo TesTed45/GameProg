@@ -62,7 +62,6 @@ public class WeepingSoul extends Monsters
     
     public void takeDamage()
     {
-        Health health = new Health();
         if (getWorld().getObjects(Soul.class).get(0).getHolyItem().equals("Salt")) {
             if (saltTouch == false) {
                 if (isTouching(Soul.class)) {
@@ -118,9 +117,20 @@ public class WeepingSoul extends Monsters
             }
         }
         if (monsterHealth == 0) {
+            Health health0 = new Health();
+            if (getWorld().getObjects(Soul.class).get(0).getHolyItem().equals("VampiricCape")) {
+                getWorld().addObject(health0, getX() - 25, getY());
+            }
+            Health health = new Health();
             getWorld().addObject(health, getX(), getY());
+            Health health1 = new Health();
+            getWorld().addObject(health1, getX() + 15, getY());
+            Health health2 = new Health();
+            getWorld().addObject(health2, getX() - 10, getY() + 10);
+            Health health3 = new Health();
+            getWorld().addObject(health3, getX() + 20, getY() - 15);
             getWorld().removeObject(this);
-            Soul.killCount += 1;
+            Soul.WSKillCount += 1;
         }
     }
 }

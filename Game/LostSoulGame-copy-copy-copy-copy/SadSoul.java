@@ -62,7 +62,6 @@ public class SadSoul extends Monsters
     
     public void takeDamage()
     {
-        Health health = new Health();
         if (getWorld().getObjects(Soul.class).get(0).getHolyItem().equals("Salt")) {
             if (saltTouch == false) {
                 if (isTouching(Soul.class)) {
@@ -118,9 +117,16 @@ public class SadSoul extends Monsters
             }
         }
         if (monsterHealth == 0) {
+            Health health0 = new Health();
+            if (getWorld().getObjects(Soul.class).get(0).getHolyItem().equals("VampiricCape")) {
+                getWorld().addObject(health0, getX() - 25, getY());
+            }
+            Health health = new Health();
             getWorld().addObject(health, getX(), getY());
+            Health health1 = new Health();
+            getWorld().addObject(health1, getX() + 15, getY());
             getWorld().removeObject(this);
-            Soul.killCount += 1;
+            Soul.SSKillCount += 1;
         }
     }
 }

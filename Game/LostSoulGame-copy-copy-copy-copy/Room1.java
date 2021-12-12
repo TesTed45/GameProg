@@ -46,7 +46,7 @@ public class Room1 extends World
         soul2.setLocation(441,450);
         soul2.setLocation(375,502);
         soul2.setLocation(399,540);
-        Monster monster =  new Monster();
+        WeakDemon monster =  new WeakDemon();
         addObject(monster, Greenfoot.getRandomNumber(800), Greenfoot.getRandomNumber(400));
     }
 }

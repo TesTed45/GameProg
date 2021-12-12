@@ -27,8 +27,18 @@ public class Soul extends Actor
 
     private int worldChecker = 1;
     private int expNum = 0;
-    public static int killCount = 0;
-    private int killCountHold = 0;
+    public static int WDKillCount = 0;
+    public static int LDKillCount = 0;
+    public static int SHKillCount = 0;
+    public static int HKillCount = 0;
+    public static int SSKillCount = 0;
+    public static int WSKillCount = 0;
+    private int WDKillCountHold = 0;
+    private int LDKillCountHold = 0;
+    private int SHKillCountHold = 0;
+    private int HKillCountHold = 0;
+    private int SSKillCountHold = 0;
+    private int WSKillCountHold = 0;
     private int level = 0;
 
     /**
@@ -53,7 +63,6 @@ public class Soul extends Actor
         useStatBoosters();
 
         holyItems();
-        useHolyItems();
 
         nextLevel();
         getHolyItem();
@@ -143,7 +152,7 @@ public class Soul extends Actor
         Actor soulHealth = getOneIntersectingObject(Health.class);
         if (soulHealth != null) {
             totalHealth = totalHealth + 5;
-            getWorld().removeObjects(getWorld().getObjects(Health.class));
+            getWorld().removeObject(soulHealth);
         }
     }
 
@@ -227,15 +236,6 @@ public class Soul extends Actor
         }
     }
 
-    public void useHolyItems()
-    {
-        if (holyItem == "VampiricCape") {
-
-        } else if (holyItem == "AngelFeather" || holyItem == "Salt" || holyItem == "SatanicPendant") {
-
-        }
-    }
-
     public String getHolyItem() {
         return holyItem;
     }
@@ -250,7 +250,7 @@ public class Soul extends Actor
         {
             if (isTouching(DoorUp.class) || isTouching(DoorLeft.class) || isTouching(DoorRight.class))
             {
-                if (getWorld().getObjects(Monster.class).size() == 0){
+                if (getWorld().getObjects(Monsters.class).size() == 0){
                     if (worldChecker == 1){
                         World room2 = new Room2();
                         room2.addObject(this, 10, 200);
@@ -422,16 +422,55 @@ public class Soul extends Actor
 
     public void experience()
     {
-        if(killCount > killCountHold)
-        {
-            expNum += 10;
-            killCountHold++;
+        if (WDKillCount > WDKillCountHold) {
+            expNum += 15;
+            WDKillCountHold++;
+        }
+        if (LDKillCount > LDKillCountHold) {
+            expNum += 30;
+            LDKillCountHold++;
+        }
+        if (SHKillCount > LDKillCountHold) {
+            expNum += 20;
+            LDKillCountHold++;
+        }
+        if (HKillCount > HKillCountHold) {
+            expNum += 35;
+            HKillCountHold++;
+        }
+        if (SSKillCount > SSKillCountHold) {
+            expNum += 25;
+            SSKillCountHold++;
+        }
+        if (WSKillCount > WSKillCountHold) {
+            expNum += 40;
+            WSKillCountHold++;
         }
     }
 
     public void levelUp()
     {
         if(expNum == 100)
+        {
+            level += 1;
+            expNum = 0;
+        }
+        if(level == 1 && expNum == 150)
+        {
+            level += 1;
+            expNum = 0;
+        }
+        if(level == 2 && expNum == 200)
+        {
+            level += 1;
+            expNum = 0;
+        }
+        if(level == 3 && expNum == 250)
+        {
+            level += 1;
+            expNum = 0;
+        }
+        if(level == 4 && expNum == 300)
         {
             level += 1;
             expNum = 0;
