@@ -1,19 +1,22 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Rug here.
+ * Write a description of class EnemyBullet here.
  * 
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class Rug extends Decor
+public class EnemyBullet extends Monsters
 {
     /**
-     * Act - do whatever the Rug wants to do. This method is called whenever
+     * Act - do whatever the EnemyBullet wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
     public void act()
     {
-        // Add your action code here.
+        move(15);
+        if (isAtEdge()) {
+           getWorld().removeObject(this); 
+        }
     }
 }

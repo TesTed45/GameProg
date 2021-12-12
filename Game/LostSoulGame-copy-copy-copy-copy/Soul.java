@@ -69,6 +69,8 @@ public class Soul extends Actor
 
         experience();
         levelUp();
+
+        death();
     }
 
     /**
@@ -77,28 +79,28 @@ public class Soul extends Actor
     public void moveAndTurn()
     {
         if (Greenfoot.isKeyDown("w")) {
-            if (getOneObjectAtOffset(0, -50, Obstacles.class) == null) {  
+            if (getOneObjectAtOffset(0, -40, Obstacles.class) == null) {  
                 setRotation(270);
                 move(speed);
                 setRotation(0);
             }
         }
         if (Greenfoot.isKeyDown("s")) {
-            if (getOneObjectAtOffset(0, 50, Obstacles.class) == null) {  
+            if (getOneObjectAtOffset(0, 40, Obstacles.class) == null) {  
                 setRotation(90);
                 move(speed);
                 setRotation(0);
             }
         }
         if (Greenfoot.isKeyDown("a")) {
-            if (getOneObjectAtOffset(-50, 0, Obstacles.class) == null) {  
+            if (getOneObjectAtOffset(-40, 0, Obstacles.class) == null) {  
                 setRotation(180);
                 move(speed);
                 setRotation(0);
             }
         }
         if (Greenfoot.isKeyDown("d")) {
-            if (getOneObjectAtOffset(50, 0, Obstacles.class) == null) {  
+            if (getOneObjectAtOffset(40, 0, Obstacles.class) == null) {  
                 setRotation(0);
                 move(speed);
                 setRotation(0);
@@ -261,20 +263,26 @@ public class Soul extends Actor
                 if (getWorld().getObjects(Monsters.class).size() == 0){
                     if (worldChecker == 1){
                         World room2 = new Room2();
-                        room2.addObject(this, 10, 200);
+                        room2.addObject(this, 415, 520);
                         Greenfoot.setWorld(room2);
                         worldChecker += 1;
                     }
                     else if (worldChecker == 2){
                         World room3 = new Room3();
-                        room3.addObject(this, 10, 200);
+                        room3.addObject(this, 415, 520);
                         Greenfoot.setWorld(room3);
                         worldChecker += 1;
                     }
                     else if (worldChecker == 3){
                         World room4 = new Room4();
-                        room4.addObject(this, 10, 200);
+                        room4.addObject(this, 415, 520);
                         Greenfoot.setWorld(room4);
+                        worldChecker += 1;
+                    }
+                    else if (worldChecker == 4){
+                        World bossRoom = new BossRoom();
+                        bossRoom.addObject(this, 415, 520);
+                        Greenfoot.setWorld(bossRoom);
                         worldChecker += 1;
                     }
                 }
@@ -496,4 +504,16 @@ public class Soul extends Actor
             expNum = 0;
         }
     }
+
+    public void death()
+    {
+        if (totalHealth <= 0)
+        {
+            World gameOver = new GameOverScreen();
+            gameOver.addObject(this, 10, 200);
+            Greenfoot.setWorld(gameOver);
+            getWorld().removeObject(this);            
+        }
+    }
+
 }

@@ -7,6 +7,9 @@ import greenfoot.*;
 public class Room1 extends World
 {
 
+    private int randomHolyGen = Greenfoot.getRandomNumber(125);
+    private int randomStatGen = Greenfoot.getRandomNumber(125);
+    private int randomWeaponsGen = Greenfoot.getRandomNumber(125);
     /**
      * Constructor for objects of class NewRoom.
      */
@@ -22,7 +25,8 @@ public class Room1 extends World
      */
     private void prepare()
     {
-
+        Rug rug = new Rug();
+        addObject(rug,404,309);
         BedTop bedTop = new BedTop();
         addObject(bedTop,52,84);
         BookshelfTop bookshelfTop = new BookshelfTop();
@@ -37,8 +41,6 @@ public class Room1 extends World
         addObject(bookshelfLeft,32,517);
         BookshelfBot bookshelfBot = new BookshelfBot();
         addObject(bookshelfBot,166,575);
-        Rug rug = new Rug();
-        addObject(rug,418,323);
         TableBot tableBot = new TableBot();
         addObject(tableBot,688,570);
         BookshelfRight bookshelfRight = new BookshelfRight();
@@ -94,6 +96,54 @@ public class Room1 extends World
         soul2.setLocation(399,540);
         WeakDemon monster =  new WeakDemon();
         addObject(monster, Greenfoot.getRandomNumber(800), Greenfoot.getRandomNumber(400));
-        
+
+        if (randomHolyGen < 25)
+        {
+            addObject(new AngelFeather(), Greenfoot.getRandomNumber(800), Greenfoot.getRandomNumber(400));
+        }
+        else if (randomHolyGen < 50)
+        {
+            addObject(new Salt(), Greenfoot.getRandomNumber(800), Greenfoot.getRandomNumber(400));
+        }
+        else if (randomHolyGen < 75)
+        {
+            addObject(new SatanicPendant(), Greenfoot.getRandomNumber(800), Greenfoot.getRandomNumber(400));
+        }
+        else if (randomHolyGen < 100)
+        {
+            addObject(new VampiricCape(), Greenfoot.getRandomNumber(800), Greenfoot.getRandomNumber(400));
+        }
+        if (randomStatGen < 25)
+        {
+            addObject(new OPSoul(), Greenfoot.getRandomNumber(800), Greenfoot.getRandomNumber(400));
+        }
+        else if (randomStatGen < 50)
+        {
+            addObject(new SpeedySoul(), Greenfoot.getRandomNumber(800), Greenfoot.getRandomNumber(400));
+        }
+        else if (randomStatGen < 75)
+        {
+            addObject(new TankySoul(), Greenfoot.getRandomNumber(800), Greenfoot.getRandomNumber(400));
+        }
+        else if (randomStatGen < 100)
+        {
+            addObject(new ToughSoul(), Greenfoot.getRandomNumber(800), Greenfoot.getRandomNumber(400));
+        }
+        if (randomWeaponsGen < 25)
+        {
+            addObject(new BeastsClaws(), Greenfoot.getRandomNumber(800), Greenfoot.getRandomNumber(400));
+        }
+        else if (randomWeaponsGen < 50)
+        {
+            addObject(new Candle(), Greenfoot.getRandomNumber(800), Greenfoot.getRandomNumber(400));
+        }
+        else if (randomWeaponsGen < 75)
+        {
+            addObject(new Light(), Greenfoot.getRandomNumber(800), Greenfoot.getRandomNumber(400));
+        }
+        else if (randomWeaponsGen < 100)
+        {
+            addObject(new SoulTears(), Greenfoot.getRandomNumber(800), Greenfoot.getRandomNumber(400));
+        }
     }
 }

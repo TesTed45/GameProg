@@ -8,7 +8,9 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Room4 extends World
 {
-
+    private int randomHolyGen = Greenfoot.getRandomNumber(125);
+    private int randomStatGen = Greenfoot.getRandomNumber(125);
+    private int randomWeaponsGen = Greenfoot.getRandomNumber(125);
     /**
      * Constructor for objects of class Room4.
      * 
@@ -22,6 +24,8 @@ public class Room4 extends World
     
     private void prepare()
     {
+        Rug rug = new Rug();
+        addObject(rug,404,330);
         DoorLeft doorLeft = new DoorLeft();
         addObject(doorLeft,777,319);
         DoorLeft doorLeft2 = new DoorLeft();
@@ -32,13 +36,99 @@ public class Room4 extends World
         addObject(doorRight,780,320);
         DoorUp doorUp = new DoorUp();
         addObject(doorUp,421,18);
-        WeakDemon monster =  new WeakDemon();
+        LesserDemon monster =  new LesserDemon();
         addObject(monster, Greenfoot.getRandomNumber(800), Greenfoot.getRandomNumber(400));
-        WeakDemon monster1 =  new WeakDemon();
+        LesserDemon monster1 =  new LesserDemon();
         addObject(monster1, Greenfoot.getRandomNumber(800), Greenfoot.getRandomNumber(400));
-        WeakDemon monster2 =  new WeakDemon();
+        Hellhound monster2 =  new Hellhound();
         addObject(monster2, Greenfoot.getRandomNumber(800), Greenfoot.getRandomNumber(400));
-        WeakDemon monster3 =  new WeakDemon();
+        WeepingSoul monster3 =  new WeepingSoul();
         addObject(monster3, Greenfoot.getRandomNumber(800), Greenfoot.getRandomNumber(400));
+        if (Greenfoot.getRandomNumber(100) > 50)
+        {
+            BookshelfLeft bookshelfLeft = new BookshelfLeft();
+            addObject(bookshelfLeft,134,168);
+            bookshelfLeft.setLocation(119,186);
+            BookshelfBot bookshelfBot = new BookshelfBot();
+            addObject(bookshelfBot,234,211);
+            bookshelfBot.setLocation(247,218);
+            CouchRight couchRight = new CouchRight();
+            addObject(couchRight,674,471);
+            couchRight.setLocation(602,464);
+            couchRight.setLocation(706,185);
+            couchRight.setLocation(687,117);
+            TableTop tableTop = new TableTop();
+            addObject(tableTop,593,69);
+            couchRight.setLocation(703,144);
+            BookshelfBot bookshelfBot2 = new BookshelfBot();
+            addObject(bookshelfBot2,655,572);
+            BookshelfBot bookshelfBot3 = new BookshelfBot();
+            addObject(bookshelfBot3,181,578);
+        }
+        else
+        {
+            BookshelfRight bookshelfRight = new BookshelfRight();
+            addObject(bookshelfRight,717,474);
+            bookshelfRight.setLocation(674,453);
+            BookshelfBot bookshelfBot = new BookshelfBot();
+            addObject(bookshelfBot,581,496);
+            BookshelfTop bookshelfTop = new BookshelfTop();
+            addObject(bookshelfTop,615,61);
+            BookshelfRight bookshelfRight2 = new BookshelfRight();
+            addObject(bookshelfRight2,666,152);
+            TableTop tableTop = new TableTop();
+            addObject(tableTop,137,92);
+            TableRight tableRight = new TableRight();
+            addObject(tableRight,215,166);
+        }
+        
+        if (randomHolyGen < 25)
+        {
+            addObject(new AngelFeather(), Greenfoot.getRandomNumber(800), Greenfoot.getRandomNumber(400));
+        }
+        else if (randomHolyGen < 50)
+        {
+            addObject(new Salt(), Greenfoot.getRandomNumber(800), Greenfoot.getRandomNumber(400));
+        }
+        else if (randomHolyGen < 75)
+        {
+            addObject(new SatanicPendant(), Greenfoot.getRandomNumber(800), Greenfoot.getRandomNumber(400));
+        }
+        else if (randomHolyGen < 100)
+        {
+            addObject(new VampiricCape(), Greenfoot.getRandomNumber(800), Greenfoot.getRandomNumber(400));
+        }
+        if (randomStatGen < 25)
+        {
+            addObject(new OPSoul(), Greenfoot.getRandomNumber(800), Greenfoot.getRandomNumber(400));
+        }
+        else if (randomStatGen < 50)
+        {
+            addObject(new SpeedySoul(), Greenfoot.getRandomNumber(800), Greenfoot.getRandomNumber(400));
+        }
+        else if (randomStatGen < 75)
+        {
+            addObject(new TankySoul(), Greenfoot.getRandomNumber(800), Greenfoot.getRandomNumber(400));
+        }
+        else if (randomStatGen < 100)
+        {
+            addObject(new ToughSoul(), Greenfoot.getRandomNumber(800), Greenfoot.getRandomNumber(400));
+        }
+        if (randomWeaponsGen < 25)
+        {
+            addObject(new BeastsClaws(), Greenfoot.getRandomNumber(800), Greenfoot.getRandomNumber(400));
+        }
+        else if (randomWeaponsGen < 50)
+        {
+            addObject(new Candle(), Greenfoot.getRandomNumber(800), Greenfoot.getRandomNumber(400));
+        }
+        else if (randomWeaponsGen < 75)
+        {
+            addObject(new Light(), Greenfoot.getRandomNumber(800), Greenfoot.getRandomNumber(400));
+        }
+        else if (randomWeaponsGen < 100)
+        {
+            addObject(new SoulTears(), Greenfoot.getRandomNumber(800), Greenfoot.getRandomNumber(400));
+        }
     }
 }
