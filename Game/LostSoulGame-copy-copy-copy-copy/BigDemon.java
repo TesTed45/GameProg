@@ -16,14 +16,12 @@ public class BigDemon extends Monsters
     private int timer = 300;
     private boolean delay = false;
     private int delayTime = 30;
-    GifImage myGif = new GifImage("Demon.gif");
 
     public void act()
     {
         getWorld().showText("Hp: " + monsterHealth, 500, 100);
         takeDamage();
         shoot();
-        setImage (myGif.getCurrentImage());
     }
 
     public void takeDamage()
