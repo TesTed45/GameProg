@@ -77,24 +77,32 @@ public class Soul extends Actor
     public void moveAndTurn()
     {
         if (Greenfoot.isKeyDown("w")) {
-            setRotation(270);
-            move(speed);
-            setRotation(0);
+            if (getOneObjectAtOffset(0, -50, Obstacles.class) == null) {  
+                setRotation(270);
+                move(speed);
+                setRotation(0);
+            }
         }
         if (Greenfoot.isKeyDown("s")) {
-            setRotation(90);
-            move(speed);
-            setRotation(0);
+            if (getOneObjectAtOffset(0, 50, Obstacles.class) == null) {  
+                setRotation(90);
+                move(speed);
+                setRotation(0);
+            }
         }
         if (Greenfoot.isKeyDown("a")) {
-            setRotation(180);
-            move(speed);
-            setRotation(0);
+            if (getOneObjectAtOffset(-50, 0, Obstacles.class) == null) {  
+                setRotation(180);
+                move(speed);
+                setRotation(0);
+            }
         }
         if (Greenfoot.isKeyDown("d")) {
-            setRotation(0);
-            move(speed);
-            setRotation(0);
+            if (getOneObjectAtOffset(50, 0, Obstacles.class) == null) {  
+                setRotation(0);
+                move(speed);
+                setRotation(0);
+            }
         }
     }
 
@@ -255,6 +263,18 @@ public class Soul extends Actor
                         World room2 = new Room2();
                         room2.addObject(this, 10, 200);
                         Greenfoot.setWorld(room2);
+                        worldChecker += 1;
+                    }
+                    else if (worldChecker == 2){
+                        World room3 = new Room3();
+                        room3.addObject(this, 10, 200);
+                        Greenfoot.setWorld(room3);
+                        worldChecker += 1;
+                    }
+                    else if (worldChecker == 3){
+                        World room4 = new Room4();
+                        room4.addObject(this, 10, 200);
+                        Greenfoot.setWorld(room4);
                         worldChecker += 1;
                     }
                 }

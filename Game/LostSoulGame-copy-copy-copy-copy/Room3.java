@@ -1,29 +1,25 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Room2 here.
+ * Write a description of class Room3 here.
  * 
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class Room2 extends World
+public class Room3 extends World
 {
 
     /**
-     * Constructor for objects of class Room2.
+     * Constructor for objects of class Room3.
      * 
      */
-    public Room2()
+    public Room3()
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(800, 600, 1); 
         prepare();
     }
     
-    /**
-     * Prepare the world for the start of the program.
-     * That is: create the initial objects and add them to the world.
-     */
     private void prepare()
     {
         DoorLeft doorLeft = new DoorLeft();
@@ -36,9 +32,11 @@ public class Room2 extends World
         addObject(doorRight,780,320);
         DoorUp doorUp = new DoorUp();
         addObject(doorUp,421,18);
-        WeakDemon monster =  new WeakDemon();
+        SadSoul monster =  new SadSoul();
         addObject(monster, Greenfoot.getRandomNumber(800), Greenfoot.getRandomNumber(400));
-        WeepingSoul monster1 =  new WeepingSoul();
+        SmallHellhound monster1 =  new SmallHellhound();
         addObject(monster1, Greenfoot.getRandomNumber(800), Greenfoot.getRandomNumber(400));
+        WeepingSoul monster2 =  new WeepingSoul();
+        addObject(monster2, Greenfoot.getRandomNumber(800), Greenfoot.getRandomNumber(400));
     }
 }
