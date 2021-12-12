@@ -36,12 +36,6 @@ public class Room3 extends World
         addObject(doorRight,780,320);
         DoorUp doorUp = new DoorUp();
         addObject(doorUp,421,18);
-        SadSoul monster =  new SadSoul();
-        addObject(monster, Greenfoot.getRandomNumber(800), Greenfoot.getRandomNumber(400));
-        SmallHellhound monster1 =  new SmallHellhound();
-        addObject(monster1, Greenfoot.getRandomNumber(800), Greenfoot.getRandomNumber(400));
-        WeepingSoul monster2 =  new WeepingSoul();
-        addObject(monster2, Greenfoot.getRandomNumber(800), Greenfoot.getRandomNumber(400));
         if (Greenfoot.getRandomNumber(100) > 50)
         {
             BookshelfLeft bookshelfLeft = new BookshelfLeft();
@@ -128,5 +122,11 @@ public class Room3 extends World
         {
             addObject(new SoulTears(), Greenfoot.getRandomNumber(800), Greenfoot.getRandomNumber(400));
         }
+        SadSoul monster =  new SadSoul();
+        addObject(monster, Greenfoot.getRandomNumber(800), Greenfoot.getRandomNumber(400));
+        SmallHellhound monster1 =  new SmallHellhound();
+        addObject(monster1, Greenfoot.getRandomNumber(800), Greenfoot.getRandomNumber(400));
+        WeepingSoul monster2 =  new WeepingSoul();
+        addObject(monster2, Greenfoot.getRandomNumber(800), Greenfoot.getRandomNumber(400));
     }
 }

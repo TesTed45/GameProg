@@ -65,6 +65,8 @@ public class Soul extends Actor
 
         experience();
         levelUp();
+        
+        death();
     }
 
     /**
@@ -312,21 +314,18 @@ public class Soul extends Actor
                 if (getWorld().getObjects(Monsters.class).size() == 0){
                     if (worldChecker == 1){
                         World room2 = new Room2();
-                        room2.addObject(this, 10, 200);
                         room2.addObject(this, 415, 520);
                         Greenfoot.setWorld(room2);
                         worldChecker += 1;
                     }
                     else if (worldChecker == 2){
                         World room3 = new Room3();
-                        room3.addObject(this, 10, 200);
                         room3.addObject(this, 415, 520);
                         Greenfoot.setWorld(room3);
                         worldChecker += 1;
                     }
                     else if (worldChecker == 3){
                         World room4 = new Room4();
-                        room4.addObject(this, 10, 200);
                         room4.addObject(this, 415, 520);
                         Greenfoot.setWorld(room4);
                         worldChecker += 1;

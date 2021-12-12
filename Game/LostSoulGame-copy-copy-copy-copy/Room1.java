@@ -85,17 +85,7 @@ public class Room1 extends World
         doorUp.setLocation(409,30);
         doorUp.setLocation(424,9);
         doorLeft.setLocation(16,323);
-        Soul soul = new Soul();
-        addObject(soul,379,564);
-        soul.setLocation(421,571);
-        Soul soul2 = new Soul();
-        addObject(soul2,429,423);
-        removeObject(soul);
-        soul2.setLocation(441,450);
-        soul2.setLocation(375,502);
-        soul2.setLocation(399,540);
-        WeakDemon monster =  new WeakDemon();
-        addObject(monster, Greenfoot.getRandomNumber(800), Greenfoot.getRandomNumber(400));
+        
 
         if (randomHolyGen < 25)
         {
@@ -145,5 +135,9 @@ public class Room1 extends World
         {
             addObject(new SoulTears(), Greenfoot.getRandomNumber(800), Greenfoot.getRandomNumber(400));
         }
+        WeakDemon monster =  new WeakDemon();
+        addObject(monster, Greenfoot.getRandomNumber(800), Greenfoot.getRandomNumber(400));
+        Soul soul = new Soul();
+        addObject(soul,379,564);
     }
 }
