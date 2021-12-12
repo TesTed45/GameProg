@@ -16,7 +16,7 @@ public class WeepingSoul extends Monsters
     private int followTimer = 150;
     private boolean noFollow = false;
     private boolean movingVertically = Greenfoot.getRandomNumber(2) == 0;
-    
+
     /**
      * Act - do whatever the Hellhounds wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
@@ -40,7 +40,7 @@ public class WeepingSoul extends Monsters
             }
         }
     }
-    
+
     private void followPlayer()
     {
         Actor actor = (Actor)getWorld().getObjects(Soul.class).get(0);
@@ -59,7 +59,7 @@ public class WeepingSoul extends Monsters
             setLocation(getX(), getY() - Greenfoot.getRandomNumber(2));
         }
     }
-    
+
     public void takeDamage()
     {
         if (getWorld().getObjects(Soul.class).get(0).getHolyItem().equals("Salt")) {
@@ -82,27 +82,27 @@ public class WeepingSoul extends Monsters
         if (monsterHealth > 0) {
             if (noTouch == false) {
                 if (isTouching(SoulSpear.class)) {
-                    monsterHealth = monsterHealth - 5;
+                    monsterHealth = monsterHealth - (6 + getWorld().getObjects(Soul.class).get(0).getBonusDamage());
                     noTouch = true;
                 }
                 if (isTouching(DemonSpear.class)) {
-                    monsterHealth = monsterHealth - 5;
+                    monsterHealth = monsterHealth - (10 + getWorld().getObjects(Soul.class).get(0).getBonusDamage());
                     noTouch = true;
                 }
                 if (isTouching(BeastsClaws.class)) {
-                    monsterHealth = monsterHealth - 5;
+                    monsterHealth = monsterHealth - (14 + getWorld().getObjects(Soul.class).get(0).getBonusDamage());
                     noTouch = true;
                 }
                 if (isTouching(LightBalls.class)) {
-                    monsterHealth = monsterHealth - 5;
+                    monsterHealth = monsterHealth - (6 + getWorld().getObjects(Soul.class).get(0).getBonusDamage());
                     noTouch = true;
                 }
                 if (isTouching(FireBalls.class)) {
-                    monsterHealth = monsterHealth - 5;
+                    monsterHealth = monsterHealth - (8 + getWorld().getObjects(Soul.class).get(0).getBonusDamage());
                     noTouch = true;
                 }
                 if (isTouching(Tears.class)) {
-                    monsterHealth = monsterHealth - 5;
+                    monsterHealth = monsterHealth - (12 + getWorld().getObjects(Soul.class).get(0).getBonusDamage());
                     noTouch = true;
                 }
             }
@@ -116,7 +116,7 @@ public class WeepingSoul extends Monsters
                 }
             }
         }
-        if (monsterHealth == 0) {
+        if (monsterHealth <= 0) {
             Health health0 = new Health();
             if (getWorld().getObjects(Soul.class).get(0).getHolyItem().equals("VampiricCape")) {
                 getWorld().addObject(health0, getX() - 25, getY());

@@ -8,35 +8,22 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class SoulTears extends Weapons
 {
-    private String weapon = "";
-    private int weaponTime;
-    private int reloadTime;
-    private int weaponDelay;
+    private int weaponReloadTimer = 15;
     /**
      * Act - do whatever the Gun wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
     public void act()
     {
-        tearsPickUp();
         tears();
         soulMovement();
         spawnTears();
-        weaponDelay++;
-    }
-
-    public void tearsPickUp()
-    {
-        Actor soulDemonSpear = getOneIntersectingObject(Soul.class);
-        if (soulDemonSpear != null) {
-            weapon = "Tears";
-        }
-    }
+    } 
 
     public void tears()
     {
         MouseInfo mi = Greenfoot.getMouseInfo();
-        if (weapon == "Tears") {
+        if (getWorld().getObjects(Soul.class).get(0).getWeapon().equals("SoulTears")) {
             if (mi != null) {
                 turnTowards(mi.getX(), mi.getY());
             }
@@ -60,18 +47,16 @@ public class SoulTears extends Weapons
         }
     }
 
-    public void setReloadTime(int reloadTimer)
-    {
-        weaponTime = reloadTime;
-    }
-
     public void spawnTears()
     {
-        if(Greenfoot.isKeyDown("Space") && weaponDelay >= weaponTime) {
-            Tears tears = new Tears();
-            getWorld().addObject(tears, getX(), getY());
-            tears.turnTowards(Greenfoot.getMouseInfo().getX(), Greenfoot.getMouseInfo().getY());
-            weaponDelay = 0;
+        if (getWorld().getObjects(Soul.class).get(0).getWeapon().equals("SoulTears")) {
+            weaponReloadTimer--;
+            if(Greenfoot.isKeyDown("Space") && weaponReloadTimer <= 0) {
+                Tears tears = new Tears();
+                getWorld().addObject(tears, getX(), getY());
+                tears.turnTowards(Greenfoot.getMouseInfo().getX(), Greenfoot.getMouseInfo().getY());
+                weaponReloadTimer = 15;
+            }
         }
     }
 }

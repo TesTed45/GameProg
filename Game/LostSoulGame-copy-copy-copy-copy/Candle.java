@@ -8,35 +8,22 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Candle extends Weapons
 {
-    private String weapon = "";
-    private int weaponTime;
-    private int reloadTime;
-    private int weaponDelay = 35;
+    private int weaponReloadTimer = 18;
     /**
      * Act - do whatever the Gun wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
     public void act()
     {
-        candlePickUp();
         candle();
         soulMovement();
         spawnFireBalls();
-        weaponDelay--;
-    }
-
-    public void candlePickUp()
-    {
-        Actor soulDemonSpear = getOneIntersectingObject(Soul.class);
-        if (soulDemonSpear != null) {
-            weapon = "Candle";
-        }
     }
 
     public void candle()
     {
         MouseInfo mi = Greenfoot.getMouseInfo();
-        if (weapon == "Candle") {
+        if (getWorld().getObjects(Soul.class).get(0).getWeapon().equals("Candle")) {
             if (mi != null) {
                 turnTowards(mi.getX(), mi.getY());
             }
@@ -60,18 +47,16 @@ public class Candle extends Weapons
         }
     }
 
-    public void setReloadTime(int reloadTimer)
-    {
-        weaponTime = reloadTime;
-    }
-
     public void spawnFireBalls()
     {
-        if(Greenfoot.isKeyDown("Space") && weaponDelay >= weaponTime) {
-            FireBalls fireBall = new FireBalls();
-            getWorld().addObject(fireBall, getX(), getY());
-            fireBall.turnTowards(Greenfoot.getMouseInfo().getX(), Greenfoot.getMouseInfo().getY());
-            weaponDelay = 35;
+        if (getWorld().getObjects(Soul.class).get(0).getWeapon().equals("Candle")) {
+            weaponReloadTimer--;
+            if(Greenfoot.isKeyDown("Space") && weaponReloadTimer <= 0) {
+                FireBalls fireBall = new FireBalls();
+                getWorld().addObject(fireBall, getX(), getY());
+                fireBall.turnTowards(Greenfoot.getMouseInfo().getX(), Greenfoot.getMouseInfo().getY());
+                weaponReloadTimer = 18;
+            }
         }
     }
 }
