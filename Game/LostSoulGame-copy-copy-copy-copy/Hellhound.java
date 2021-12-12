@@ -71,7 +71,7 @@ public class Hellhound extends Monsters
                     monsterHealth = monsterHealth - 5;
                     saltTouch = true;
                     delay = true;
-                    setImage("hell hound hurt right.png");
+                    setImage("hell hound right hurt.png");
                 }
             }
             if (saltTouch == true) {
@@ -90,37 +90,37 @@ public class Hellhound extends Monsters
                     monsterHealth = monsterHealth - (6 + getWorld().getObjects(Soul.class).get(0).getBonusDamage());
                     noTouch = true;
                     delay = true;
-                    setImage("hell hound hurt right.png");
+                    setImage("hell hound right hurt.png");
                 }
                 if (isTouching(DemonSpear.class)) {
                     monsterHealth = monsterHealth - (10 + getWorld().getObjects(Soul.class).get(0).getBonusDamage());
                     noTouch = true;
                     delay = true;
-                    setImage("hell hound hurt right.png");
+                    setImage("hell hound right hurt.png");
                 }
                 if (isTouching(BeastsClaws.class)) {
                     monsterHealth = monsterHealth - (14 + getWorld().getObjects(Soul.class).get(0).getBonusDamage());
                     noTouch = true;
                     delay = true;
-                    setImage("hell hound hurt right.png");
+                    setImage("hell hound right hurt.png");
                 }
                 if (isTouching(LightBalls.class)) {
                     monsterHealth = monsterHealth - (6 + getWorld().getObjects(Soul.class).get(0).getBonusDamage());
                     noTouch = true;
                     delay = true;
-                    setImage("hell hound hurt right.png");
+                    setImage("hell hound right hurt.png");
                 }
                 if (isTouching(FireBalls.class)) {
                     monsterHealth = monsterHealth - (8 + getWorld().getObjects(Soul.class).get(0).getBonusDamage());
                     noTouch = true;
                     delay = true;
-                    setImage("hell hound hurt right.png");
+                    setImage("hell hound right hurt.png");
                 }
                 if (isTouching(Tears.class)) {
                     monsterHealth = monsterHealth - (12 + getWorld().getObjects(Soul.class).get(0).getBonusDamage());
                     noTouch = true;
                     delay = true;
-                    setImage("hell hound hurt right.png");
+                    setImage("hell hound right hurt.png");
                 }
             }
             if (noTouch == true) {
