@@ -16,6 +16,9 @@ public class WeepingSoul extends Monsters
     private int followTimer = 150;
     private boolean noFollow = false;
     private boolean movingVertically = Greenfoot.getRandomNumber(2) == 0;
+    private boolean delay = false;
+    private int delayTime = 30;
+    GifImage myGif = new GifImage("weeping ghost.gif");
 
     /**
      * Act - do whatever the Hellhounds wants to do. This method is called whenever
@@ -25,6 +28,7 @@ public class WeepingSoul extends Monsters
     {
         getWorld().showText("Hp: " + monsterHealth, 500, 100);
         takeDamage();
+        
         if (this.getWorld() != null) {
             if (getWorld().getObjects(Soul.class).get(0).getHolyItem().equals("SatanicPendant")) {
                 if (noFollow == false) {
@@ -67,6 +71,8 @@ public class WeepingSoul extends Monsters
                 if (isTouching(Soul.class)) {
                     monsterHealth = monsterHealth - 5;
                     saltTouch = true;
+                    delay = true;
+                    setImage("weeping ghost hurt.png");
                 }
             }
             if (saltTouch == true) {
@@ -84,26 +90,38 @@ public class WeepingSoul extends Monsters
                 if (isTouching(SoulSpear.class)) {
                     monsterHealth = monsterHealth - (6 + getWorld().getObjects(Soul.class).get(0).getBonusDamage());
                     noTouch = true;
+                    delay = true;
+                    setImage("weeping ghost hurt.png");
                 }
                 if (isTouching(DemonSpear.class)) {
                     monsterHealth = monsterHealth - (10 + getWorld().getObjects(Soul.class).get(0).getBonusDamage());
                     noTouch = true;
+                    delay = true;
+                    setImage("weeping ghost hurt.png");
                 }
                 if (isTouching(BeastsClaws.class)) {
                     monsterHealth = monsterHealth - (14 + getWorld().getObjects(Soul.class).get(0).getBonusDamage());
                     noTouch = true;
+                    delay = true;
+                    setImage("weeping ghost hurt.png");
                 }
                 if (isTouching(LightBalls.class)) {
                     monsterHealth = monsterHealth - (6 + getWorld().getObjects(Soul.class).get(0).getBonusDamage());
                     noTouch = true;
+                    delay = true;
+                    setImage("weeping ghost hurt.png");
                 }
                 if (isTouching(FireBalls.class)) {
                     monsterHealth = monsterHealth - (8 + getWorld().getObjects(Soul.class).get(0).getBonusDamage());
                     noTouch = true;
+                    delay = true;
+                    setImage("weeping ghost hurt.png");
                 }
                 if (isTouching(Tears.class)) {
                     monsterHealth = monsterHealth - (12 + getWorld().getObjects(Soul.class).get(0).getBonusDamage());
                     noTouch = true;
+                    delay = true;
+                    setImage("weeping ghost hurt.png");
                 }
             }
             if (noTouch == true) {
@@ -131,6 +149,16 @@ public class WeepingSoul extends Monsters
             getWorld().addObject(health3, getX() + 20, getY() - 15);
             getWorld().removeObject(this);
             Soul.WSKillCount += 1;
+        }
+        if (delay)
+        {
+            delayTime--;
+        }
+        if (delayTime == 0)
+        {
+            setImage("weeping ghost.gif");
+            delay = false;
+            delayTime = 30;
         }
     }
 }

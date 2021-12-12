@@ -26,7 +26,8 @@ public class Controls extends Buttons
 
         if (Greenfoot.mouseClicked(this))
         {
-
+            World world = new ControlScreen();
+            Greenfoot.setWorld(world);
         }
     }
 }

@@ -16,6 +16,9 @@ public class SadSoul extends Monsters
     private int followTimer = 150;
     private boolean noFollow = false;
     private boolean movingVertically = Greenfoot.getRandomNumber(2) == 0;
+    private boolean delay = false;
+    private int delayTime = 30;
+    GifImage myGif = new GifImage("sad soul animate.gif");
     
     /**
      * Act - do whatever the Hellhounds wants to do. This method is called whenever
@@ -23,6 +26,7 @@ public class SadSoul extends Monsters
      */
     public void act()
     {
+        setImage (myGif.getCurrentImage());
         getWorld().showText("Hp: " + monsterHealth, 500, 100);
         takeDamage();
         if (this.getWorld() != null) {
@@ -127,6 +131,16 @@ public class SadSoul extends Monsters
             getWorld().addObject(health1, getX() + 15, getY());
             getWorld().removeObject(this);
             Soul.SSKillCount += 1;
+        }
+        if (delay)
+        {
+            delayTime--;
+        }
+        if (delayTime == 0)
+        {
+            setImage("lost soul1.gif");
+            delay = false;
+            delayTime = 30;
         }
     }
 }

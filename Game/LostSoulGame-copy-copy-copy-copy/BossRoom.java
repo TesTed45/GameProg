@@ -19,6 +19,7 @@ public class BossRoom extends World
         super(800, 600, 1); 
         prepare();
     }
+    
     /**
      * Prepare the world for the start of the program.
      * That is: create the initial objects and add them to the world.
@@ -27,5 +28,7 @@ public class BossRoom extends World
     {
         BigDemon bigDemon = new BigDemon();
         addObject(bigDemon,409,33);
+        bigDemon.setLocation(395,237);
+        bigDemon.setLocation(394,184);
     }
 }

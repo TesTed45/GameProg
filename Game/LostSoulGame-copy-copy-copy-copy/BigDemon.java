@@ -14,13 +14,18 @@ public class BigDemon extends Monsters
     private boolean noTouch = false;
     private int damageTimer = 25;
     private int timer = 300;
-    
+    private boolean delay = false;
+    private int delayTime = 30;
+    GifImage myGif = new GifImage("Demon.gif");
+
     public void act()
     {
         getWorld().showText("Hp: " + monsterHealth, 500, 100);
         takeDamage();
         shoot();
+        setImage (myGif.getCurrentImage());
     }
+
     public void takeDamage()
     {
         if (getWorld().getObjects(Soul.class).get(0).getHolyItem().equals("Salt")) {
@@ -28,6 +33,8 @@ public class BigDemon extends Monsters
                 if (isTouching(Soul.class)) {
                     monsterHealth = monsterHealth - 5;
                     saltTouch = true;
+                    delay = true;
+                    setImage("Demon hurt.png");
                 }
             }
             if (saltTouch == true) {
@@ -45,26 +52,38 @@ public class BigDemon extends Monsters
                 if (isTouching(SoulSpear.class)) {
                     monsterHealth = monsterHealth - 5;
                     noTouch = true;
+                    delay = true;
+                    setImage("Demon hurt.png");
                 }
                 if (isTouching(DemonSpear.class)) {
                     monsterHealth = monsterHealth - 5;
                     noTouch = true;
+                    delay = true;
+                    setImage("Demon hurt.png");
                 }
                 if (isTouching(BeastsClaws.class)) {
                     monsterHealth = monsterHealth - 5;
                     noTouch = true;
+                    delay = true;
+                    setImage("Demon hurt.png");
                 }
                 if (isTouching(LightBalls.class)) {
                     monsterHealth = monsterHealth - 5;
                     noTouch = true;
+                    delay = true;
+                    setImage("Demon hurt.png");
                 }
                 if (isTouching(FireBalls.class)) {
                     monsterHealth = monsterHealth - 5;
                     noTouch = true;
+                    delay = true;
+                    setImage("Demon hurt.png");
                 }
                 if (isTouching(Tears.class)) {
                     monsterHealth = monsterHealth - 5;
                     noTouch = true;
+                    delay = true;
+                    setImage("Demon hurt.png");
                 }
             }
             if (noTouch == true) {
@@ -89,8 +108,18 @@ public class BigDemon extends Monsters
             getWorld().removeObject(this);
             Soul.SSKillCount += 1;
         }
+        if (delay)
+        {
+            delayTime--;
+        }
+        if (delayTime == 0)
+        {
+            setImage("Demon.gif");
+            delay = false;
+            delayTime = 30;
+        }
     }
-    
+
     public void shoot()
     {
         if (timer == 0) {
@@ -105,7 +134,5 @@ public class BigDemon extends Monsters
             timer--;
         }
     }
-    
-    
-}
 
+}

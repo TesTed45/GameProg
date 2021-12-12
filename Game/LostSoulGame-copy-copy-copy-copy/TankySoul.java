@@ -8,12 +8,13 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class TankySoul extends StatBoosters
 {
+    GifImage myGif = new GifImage("TankySoul.gif");
     /**
      * Act - do whatever the TankySoul wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
     public void act()
     {
-        // Add your action code here.
+        setImage (myGif.getCurrentImage());
     }
 }

@@ -8,6 +8,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Light extends Weapons
 {
+    GifImage myGif = new GifImage("light.gif");
     private int weaponReloadTimer = 20;
     /**
      * Act - do whatever the Gun wants to do. This method is called whenever
@@ -18,6 +19,7 @@ public class Light extends Weapons
         light();
         soulMovement();
         spawnLightBalls();
+        setImage (myGif.getCurrentImage());
     }
 
     public void light()

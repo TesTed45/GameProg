@@ -8,6 +8,10 @@ public class Soul extends Actor
 {
     private int damageTimer = 100;
     private boolean noTouch = false;
+    private boolean bossTouch = false;
+    private int bossTimer = 50;
+    private boolean delay = false;
+    private int delayTime = 30;
 
     private String weapon = "SoulSpear";
     private int weaponTimer = 30;
@@ -109,30 +113,59 @@ public class Soul extends Actor
      */
     public void damage()
     {
+        if (!bossTouch)
+        {
+            if (isTouching(EnemyBullet.class))
+            {
+                health = health - (20 - bonusDefense);
+                bossTouch = true;
+            }
+        }
+        if (bossTouch)
+        {
+            if (bossTimer > 0) {
+                bossTimer--;
+            }
+            if (bossTimer == 0) {
+                bossTouch = false;
+            }
+        }
         if (noTouch == false) {
             if (isTouching(WeakDemon.class)) {
                 health = health - (5 - bonusDefense);
                 noTouch = true;
+                delay = true;
+                setImage("lost soul hurt.png");
             }
             if (isTouching(LesserDemon.class)) {
                 health = health - (10- bonusDefense);
                 noTouch = true;
+                delay = true;
+                setImage("lost soul hurt.png");
             }
             if (isTouching(SmallHellhound.class)) {
                 health = health - (6- bonusDefense);
                 noTouch = true;
+                delay = true;
+                setImage("lost soul hurt.png");
             }
             if (isTouching(Hellhound.class)) {
                 health = health - (15- bonusDefense);
                 noTouch = true;
+                delay = true;
+                setImage("lost soul hurt.png");
             }
             if (isTouching(SadSoul.class)) {
                 health = health - (10- bonusDefense);
                 noTouch = true;
+                delay = true;
+                setImage("lost soul hurt.png");
             }
             if (isTouching(WeepingSoul.class)) {
                 health = health - (16- bonusDefense);
                 noTouch = true;
+                delay = true;
+                setImage("lost soul hurt.png");
             }
         }
         if (noTouch == true) {
@@ -147,6 +180,16 @@ public class Soul extends Actor
                     damageTimer = 100;
                 }
             }
+        }
+        if (delay)
+        {
+            delayTime--;
+        }
+        if (delayTime == 0)
+        {
+            setImage("lost soul1.gif");
+            delay = false;
+            delayTime = 30;
         }
     }
 

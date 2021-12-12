@@ -16,9 +16,10 @@ public class GameOverScreen extends World
     public GameOverScreen()
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
-        super(800, 600, 1); 
+        super(1000, 800, 1); 
         prepare();
     }
+    
     /**
      * Prepare the world for the start of the program.
      * That is: create the initial objects and add them to the world.
@@ -27,5 +28,9 @@ public class GameOverScreen extends World
     {
         Start start = new Start();
         addObject(start,394,454);
+        removeObject(start);
+
+        Return reset = new Return();
+        addObject(reset,900,714);
     }
 }

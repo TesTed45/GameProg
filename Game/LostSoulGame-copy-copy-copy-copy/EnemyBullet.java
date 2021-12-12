@@ -14,7 +14,7 @@ public class EnemyBullet extends Monsters
      */
     public void act()
     {
-        move(Greenfoot.getRandomNumber(10) + 5);
+        move(Greenfoot.getRandomNumber(5) + 5);
         if (isAtEdge()) {
            getWorld().removeObject(this); 
         }

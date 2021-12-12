@@ -16,6 +16,9 @@ public class LesserDemon extends Monsters
     private int followTimer = 150;
     private boolean noFollow = false;
     private boolean movingVertically = Greenfoot.getRandomNumber(2) == 0;
+    private boolean delay = false;
+    private int delayTime = 30;
+    GifImage myGif = new GifImage("LesserDemon.gif");
     
     /**
      * Act - do whatever the Hellhounds wants to do. This method is called whenever
@@ -67,6 +70,8 @@ public class LesserDemon extends Monsters
                 if (isTouching(Soul.class)) {
                     monsterHealth = monsterHealth - 5;
                     saltTouch = true;
+                    delay = true;
+                    setImage("LesserDemon hurt.png");
                 }
             }
             if (saltTouch == true) {
@@ -84,14 +89,20 @@ public class LesserDemon extends Monsters
                 if (isTouching(SoulSpear.class)) {
                     monsterHealth = monsterHealth - (6 + getWorld().getObjects(Soul.class).get(0).getBonusDamage());
                     noTouch = true;
+                    delay = true;
+                    setImage("LesserDemon hurt.png");
                 }
                 if (isTouching(DemonSpear.class)) {
                     monsterHealth = monsterHealth - (10 + getWorld().getObjects(Soul.class).get(0).getBonusDamage());
                     noTouch = true;
+                    delay = true;
+                    setImage("LesserDemon hurt.png");
                 }
                 if (isTouching(BeastsClaws.class)) {
                     monsterHealth = monsterHealth - (14 + getWorld().getObjects(Soul.class).get(0).getBonusDamage());
                     noTouch = true;
+                    delay = true;
+                    setImage("LesserDemon hurt.png");
                 }
                 if (isTouching(LightBalls.class)) {
                     monsterHealth = monsterHealth - (6 + getWorld().getObjects(Soul.class).get(0).getBonusDamage());
@@ -100,10 +111,14 @@ public class LesserDemon extends Monsters
                 if (isTouching(FireBalls.class)) {
                     monsterHealth = monsterHealth - (8 + getWorld().getObjects(Soul.class).get(0).getBonusDamage());
                     noTouch = true;
+                    delay = true;
+                    setImage("LesserDemon hurt.png");
                 }
                 if (isTouching(Tears.class)) {
                     monsterHealth = monsterHealth - (12 + getWorld().getObjects(Soul.class).get(0).getBonusDamage());
                     noTouch = true;
+                    delay = true;
+                    setImage("LesserDemon hurt.png");
                 }
             }
             if (noTouch == true) {
@@ -127,6 +142,16 @@ public class LesserDemon extends Monsters
             getWorld().addObject(health1, getX() + 15, getY());
             getWorld().removeObject(this);
             Soul.LDKillCount += 1;
+        }
+        if (delay)
+        {
+            delayTime--;
+        }
+        if (delayTime == 0)
+        {
+            setImage("LesserDemon.gif");
+            delay = false;
+            delayTime = 30;
         }
     }
 }
